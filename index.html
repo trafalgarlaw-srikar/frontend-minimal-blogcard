@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Minimal blog card page">
 
     <link
       rel="icon"
@@ -15,12 +16,23 @@
 
     <!--You are welcome to delete these styles or modify them in your own stylesheet -->
     <link rel="stylesheet" href="./styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet"> -->
+
+    <!-- Preload the LCP image with a high fetchpriority so it starts loading with the stylesheet. -->
+    <!-- <link rel="preload" fetchpriority="high" as="image" href="./resources/Cactus.jpg" type="image/jpg" media="(min-width: 650px)"> -->
+    <!-- <link rel="preload" fetchpriority="high" as="image" href="./resources/Cactus@2x.jpg" type="image/jpg" media="(min-width: 465px)"> -->
+    <!-- <link rel="preconnect" fetchpriority="high" as="font" href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" crossorigin="anonymous"> -->
   </head>
   <body>
     <div class="card">
       <div class="details">
-        <img src="./resources/Cactus.jpg" />
+        <picture>
+          <source media="(min-width: 650px)" srcset="./resources/Cactus.jpg">
+          <source media="(min-width: 400px)" srcset="./resources/Cactus@2x.jpg">
+          <img src="./resources/Cactus.jpg" alt="Cactus image"/>
+        </picture>
   
         <div class="tag">
           <p>Design</p>
@@ -43,4 +55,28 @@
     </div>
 
   </body>
+
+  <script>
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+    if (window.innerWidth >= 650) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.fetchpriority = "high";
+      link.as = 'image';
+      link.type = "image/jpg";
+      link.href = 'resources/Cactus.jpg';
+      document.head.appendChild(link);
+    } else if (window.innerWidth >= 400) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.fetchpriority = "high";
+      link.as = 'image';
+      link.type = "image/jpg";
+      link.href = 'resources/Cactus@2x.jpg';
+      document.head.appendChild(link);
+    }
+  </script>
 </html>
