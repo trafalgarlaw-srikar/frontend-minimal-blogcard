@@ -1,5 +1,7 @@
 # DevChallenges.io - Minimal Blog Card
 
+[Link](https://trafalgarlaw-srikar.github.io/frontend-minimal-blogcard/)
+
 ![Thumbnail for the Minimal Blog Card coding challenge](./thumbnail.jpg)
 
 ## Welcome! 👋
